@@ -17,4 +17,14 @@ const MinusButton: React.FC<MinusButtonProps> = ({ count, setCount }) => {
   );
 };
 
+/// First example of a function child-component with props
+// const exampleButton = ({ count, setCount }: MinusButtonProps) => {
+//   return <></>;
+// };
+
+/// Second example of a function child-component with props
+// function otherButton({ count, setCount }: MinusButtonProps) {
+//   return <></>;
+// }
+
 export default MinusButton;
