@@ -1,6 +1,8 @@
 import WebappHead from "@/components/head/webapp-head";
+import NavBar from "@/components/navigation/nav-bar";
+
 import "@/styles/globals.css";
-import { ChakraProvider, extendTheme } from "@chakra-ui/react";
+import { ChakraProvider, Flex, extendTheme } from "@chakra-ui/react";
 import "@fontsource/inter";
 import "@fontsource/montserrat";
 import type { AppProps } from "next/app";
@@ -15,7 +17,18 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       <ChakraProvider theme={theme}>
         <WebappHead />
-        <Component {...pageProps} />
+        <Flex minH='100vh' flexDirection='column'>
+          <NavBar />
+          <Flex
+            flex='1'
+            width='100%'
+            maxW='1380px'
+            padding='70px 24px !important'
+            margin='0 auto'
+          >
+            <Component {...pageProps} />
+          </Flex>
+        </Flex>
       </ChakraProvider>
     </>
   );

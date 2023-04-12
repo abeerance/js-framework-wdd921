@@ -3,7 +3,7 @@ import "@fontsource/yeseva-one";
 
 export const AestheteLogo: React.FC = () => {
   return (
-    <Box fontSize='45px' fontFamily={`'Yeseva One', sans-serif`}>
+    <Box fontSize='45px' fontFamily={`'Yeseva One', sans-serif`} color='black'>
       aesthete
     </Box>
   );
