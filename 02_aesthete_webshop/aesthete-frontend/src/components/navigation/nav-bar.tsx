@@ -15,7 +15,7 @@ const NavBar: React.FC = () => {
         borderBottomColor='gray.200'
         py={3}
         position='relative'
-        height='70px'
+        height='100px'
         width='100%'
         justifyContent='space-around'
         alignItems='center'
