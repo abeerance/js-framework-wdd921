@@ -1,5 +1,16 @@
-import { Box, Grid, GridItem, Icon, Link } from "@chakra-ui/react";
+import { AuthContext } from "@/context/auth-context";
+import useOnClickOutside from "@/hooks/use-on-click-outside";
+import {
+  Box,
+  Button,
+  Grid,
+  GridItem,
+  Icon,
+  Link,
+  VStack,
+} from "@chakra-ui/react";
 import { useRouter } from "next/router";
+import { useContext, useRef, useState } from "react";
 import { AiOutlineUser } from "react-icons/ai";
 import { IoCartOutline } from "react-icons/io5";
 import AestheteLogo from "./logo/aesthete-logo";
@@ -7,6 +18,24 @@ import NavLink from "./nav-link/nav-link";
 
 const NavBar: React.FC = () => {
   const router = useRouter();
+  const { isAuthenticated, logout } = useContext(AuthContext);
+  const [isToggled, setIsToggled] = useState(false);
+
+  // function to toggle dropdown
+  const handleAvatarClick = () => {
+    setIsToggled(!isToggled);
+  };
+
+  // create the reference to the dropdown
+  const dropdownRef = useRef(null);
+
+  // close dropdown when clicking outside the dropwdown
+  const handleClickOutside = () => {
+    setIsToggled(!isToggled);
+  };
+
+  useOnClickOutside(dropdownRef, handleClickOutside);
+
   return (
     <header>
       <Box
@@ -70,7 +99,48 @@ const NavBar: React.FC = () => {
                     h={31}
                     ml='12px'
                     cursor='pointer'
+                    onClick={handleAvatarClick}
                   />
+                  {isToggled && (
+                    <VStack
+                      ref={dropdownRef}
+                      position='absolute'
+                      padding='20px'
+                      top='101%'
+                      bg='#fff'
+                      width='130px'
+                      borderColor='gray.200'
+                      borderBottomRadius='md'
+                      boxShadow='md'
+                      zIndex={1}
+                    >
+                      {isAuthenticated ? (
+                        <Button
+                          size='xs'
+                          colorScheme='red'
+                          width='100%'
+                          onClick={() => {
+                            logout();
+                            setIsToggled(false);
+                          }}
+                        >
+                          Logout
+                        </Button>
+                      ) : (
+                        <Button
+                          size='xs'
+                          colorScheme='teal'
+                          width='100%'
+                          onClick={() => {
+                            router.push("/session");
+                            setIsToggled(false);
+                          }}
+                        >
+                          Login
+                        </Button>
+                      )}
+                    </VStack>
+                  )}
                 </li>
                 <li>
                   <Icon

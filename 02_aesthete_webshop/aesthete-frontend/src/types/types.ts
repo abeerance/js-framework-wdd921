@@ -26,3 +26,24 @@ export interface Product {
     shippingAndReturns: string;
   };
 }
+
+// interface User
+export interface User {
+  id: number;
+  username: string;
+  email: string;
+}
+
+// interface AuthContextData for AuthContext
+export interface AuthContextData {
+  user: User | null;
+  isAuthenticated: boolean;
+  login: (email: string, password: string) => Promise<boolean>;
+  signup: (email: string, password: string) => Promise<boolean>;
+  logout: () => void;
+}
+
+// interface AuthProviderProps for AuthProvider
+export interface AuthProviderProps {
+  children: React.ReactNode;
+}

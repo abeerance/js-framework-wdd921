@@ -15,7 +15,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
 }) => {
   const productImage = `${IMAGE_URL}${imageUrl}`;
 
-  console.log(productImage);
   return (
     <GridItem
       height='400px'
